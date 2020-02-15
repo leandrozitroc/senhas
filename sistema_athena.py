@@ -1,5 +1,5 @@
-from senhas.valida import valida
-from senhas.luli import *
+from valida import valida
+from luli import *
 print('==='* 18)
 print('==='* 18)
 print('\33[1;34mBem vindo ao sistema Athena\33[m'.center(20 *3))
@@ -9,10 +9,10 @@ print('==='* 18)
 while True:
       print('==='* 18)
       print('[1] Gerar Senha: \n'                         
-            '[2] Criptografar Arquivo: \n'                
-            '[3] Criptografar Senha: \n'              
-            '[4] Descriptografar Senha: \n'   
-            '[5] Descriptografar Arquivo: \n'
+            '[2] Criptografar Senha: \n'                
+            '[3] Descriptografar Senha: \n'              
+            '[4] Criptografar Arquivo: \n'   
+            '[5] Descriptografar Arquvivo: \n'
             '[6] Sair')
       print('==='* 18)
       escolha = valida('Digite uma opção: ')
@@ -20,14 +20,14 @@ while True:
             print('==='* 18)
             gerarsenha()
 
-      elif escolha == 2:
-            cript_arquivo(input('digite o nome do arquivo que será Encriptado: '), "ccLmrWCJu7vpwaroDuSEjv6amtpLyiY9MI-PS-oWy_4=")
-      elif escolha == 3:
-            'cript_senha'
       elif escolha == 4:
-            'decript_senha'
+            cript_arquivo(input('digite o nome do arquivo que será Encriptado: '), "ccLmrWCJu7vpwaroDuSEjv6amtpLyiY9MI-PS-oWy_4=")
+      elif escolha == 2:
+            encript_senha(input('Senha a ser Encriptada: '), "ccLmrWCJu7vpwaroDuSEjv6amtpLyiY9MI-PS-oWy_4=")
+      elif escolha == 3:
+            decript_senha(input('Senha a ser decriptada: '), "ccLmrWCJu7vpwaroDuSEjv6amtpLyiY9MI-PS-oWy_4=")
       elif escolha == 5:
-            decript_arquivo(input('Digite o Arquivo que será Decriptado: '), "ccLmrWCJu7vpwaroDuSEjv6amtpLyiY9MI-PS-oWy_4=" )
+            decript_arquivo(input('Digite o Arquivo que sera Decriptado: '), "ccLmrWCJu7vpwaroDuSEjv6amtpLyiY9MI-PS-oWy_4=")
       elif escolha ==6:
             print('==='* 18)
             print('\33[4;36mObrigado por usar o sistema Athena\33[m ')
