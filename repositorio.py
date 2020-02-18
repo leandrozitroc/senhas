@@ -1,6 +1,6 @@
 #! Python
 import sys, pyperclip
-todas = {'hotmail': "brasil61241010", 'gmail1': 'brasil61241010', 'gmail2': 'brasil61241010' }
+todas = {'hotmail': "10", 'gmail1': '11', 'gmail2': '12' }
 
 conta = input('Insira a conta: ')
 
