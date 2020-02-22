@@ -8,9 +8,9 @@ def repositorio():
     print('\33[1;34mBem vindo ao Repositorio de senhas\33[m'.center(20 *3))
     print('==='* 18)
     print('==='* 18)
-    todas = {'hotmail': "gAAAAABeS-fw8uY9Ebbr8vHOSEP5LJZr4AU4otO-aZ_S_qn0TfKGLNO5AoFe41KE1L2oLYkFtzKPTUTHtixKIIBlC6oYIz-NGQ==",
-             'gmail1': 'gAAAAABeS-fw8uY9Ebbr8vHOSEP5LJZr4AU4otO-aZ_S_qn0TfKGLNO5AoFe41KE1L2oLYkFtzKPTUTHtixKIIBlC6oYIz-NGQ==',
-             'gmail2': 'gAAAAABeS-fw8uY9Ebbr8vHOSEP5LJZr4AU4otO-aZ_S_qn0TfKGLNO5AoFe41KE1L2oLYkFtzKPTUTHtixKIIBlC6oYIz-NGQ==' }
+    todas = {'hotmail': "x",
+             'gmail1': 'x',
+             'gmail2': 'x' }
 
     print(f'As contas disponiveis neste repositório de senha são: ')
     print('==='* 18)
