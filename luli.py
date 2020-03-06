@@ -58,14 +58,14 @@ def encript_senha(pwd , key):
     f = Fernet(key)
     senha_cript = f.encrypt(pwd.encode())
     print(senha_cript.decode())
-    colar = input('\33[1;34m Deseja mandar a senha encriptada para a área de transferencia? S ou N :\33[m').lower()
+    """colar = input('\33[1;34m Deseja mandar a senha encriptada para a área de transferencia? S ou N :\33[m').lower()
     if colar == 'n':
         print('Ok')
     elif colar == 's':
         pyperclip.copy(senha_cript.decode())
         print('\33[1;32m Senha copiada com sucesso!\33[m')
     else:
-        print('\33[1;31m Digita S para sim e N para não\33[m')
+        print('\33[1;31m Digita S para sim e N para não\33[m')"""
 
 def decript_senha(pwd, key):
     f = Fernet(key)

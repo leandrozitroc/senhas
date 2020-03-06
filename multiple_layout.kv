@@ -1,14 +1,14 @@
-<PageLayout>:
+<GridLayout>:
     GridLayout:
         cols:2
         row_force_default: True
-        row_default_height: 40
-        #pos_hint: None,None
-        pos:(0,-140)
+        row_default_height: 20
+
 
 
         Button:
             text: 'Gerar Senha'
+            on_press: root.manager.current = 'Senha'
 
         Button:
             text: 'Criptografar Senha'
