@@ -57,7 +57,7 @@ def gerarsenha():
 def encript_senha(pwd , key):
     f = Fernet(key)
     senha_cript = f.encrypt(pwd.encode())
-    print(senha_cript.decode())
+    return senha_cript.decode()
     """colar = input('\33[1;34m Deseja mandar a senha encriptada para a área de transferencia? S ou N :\33[m').lower()
     if colar == 'n':
         print('Ok')
@@ -68,14 +68,17 @@ def encript_senha(pwd , key):
         print('\33[1;31m Digita S para sim e N para não\33[m')"""
 
 def decript_senha(pwd, key):
-    f = Fernet(key)
-    senha_decript = f.decrypt(pwd.encode())
-    print(senha_decript.decode())
-    colar = input('\33[1;34m Deseja mandar a senha decriptada para área de transferencia? S ou N :\33[m').lower()
+    try:
+        f = Fernet(key)
+        senha_decript = f.decrypt(pwd.encode())
+        return senha_decript.decode()
+    except:
+        return 'Token Invalido'
+    """colar = input('\33[1;34m Deseja mandar a senha decriptada para área de transferencia? S ou N :\33[m').lower()
     if colar == 'n':
         print('Ok')
     elif colar == 's':
         pyperclip.copy(senha_decript.decode())
         print('\33[1;32m Senha copiada com sucesso!\33[m')
     else:
-        print('\33[1;31m Digita S para sim e N para não\33[m')
+        print('\33[1;31m Digita S para sim e N para não\33[m')"""

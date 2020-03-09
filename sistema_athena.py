@@ -1,6 +1,6 @@
-from senhas.valida import valida
-from senhas.luli import *
-from senhas.repositorio import *
+from valida import valida
+from luli import *
+from repositorio import *
 print('==='* 18)
 print('==='* 18)
 print('\33[1;34mBem vindo ao sistema Athena\33[m'.center(20 *3))

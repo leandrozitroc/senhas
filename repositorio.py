@@ -1,6 +1,6 @@
 #! Python
 import sys, pyperclip
-from senhas.luli import decript_senha
+from luli import decript_senha
 
 def repositorio():
     print('==='* 18)

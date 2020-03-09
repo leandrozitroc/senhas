@@ -3,7 +3,6 @@ from password_generator import PasswordGenerator
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 import kivy
-from kivy.properties import ObjectProperty, ListProperty
 import webbrowser
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.app import App
@@ -13,12 +12,14 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
-from senhas.repositorio import *
-from senhas.luli import encript_senha
+import pyperclip
+from kivy.core.clipboard import Clipboard
+from luli import encript_senha
+from luli import decript_senha
 
 Window.size = 600, 300
 Window.title = 'Sistema Athena'
-# Create both screens. Please note the root.manager.current: this is how
+# Create screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
 Builder.load_string("""
@@ -70,6 +71,7 @@ Builder.load_string("""
             on_press: root.manager.current = 'pgencriptsenha'
         Button:
             text: 'Descriptografar Senha'
+            on_press: root.manager.current = 'pgdecriptsenha'
         
         Button:
             text: 'Volte ao Menu'
@@ -108,20 +110,71 @@ Builder.load_string("""
         orientation: 'vertical'
         Label: 
             text: 'Digite a Senha a ser Encriptada: '
+            id: titulo_encript
         TextInput:
             id: senha_1
         Button: 
             text: 'Encriptar'
             on_press: root.save()
-            on_release: app.mostra_senha(self.text)
-            
+            on_release: 
+                root.mostra_senha()
+        Button:
+            text: 'Copiar Senha:'
+            on_press:
+                app.clipcopy(senha_1.text)        
+        
+        Button: 
+            text: 'Volte ao Anterior'
+            on_press: root.manager.current = 'cript' 
+            on_release: root.apaga_text()
+        
         Button: 
             text: 'Volte ao Menu'
             on_press: root.manager.current = 'menu' 
+            on_release: root.apaga_text()
+
+<PaginaDecriptSenha>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label: 
+            text: 'Digite a Senha a ser Decriptada: '
+            id: titulo_decript
+        TextInput:
+            id: senha_2
+        Button: 
+            text: 'Decriptar'
+            on_press: root.save()
+            on_release: 
+                root.mostra_senha()
         
+        Button:
+            text: 'Cole a Senha a ser Decriptada: '
+            on_press: 
+                root.clippaste()
+                    
+        Button:
+            text: 'Copiar Senha:'
+            on_press:
+                app.clipcopy(senha_2.text)
+                
+                
+        Button: 
+            text: 'Volte ao Anterior'
+            on_press: root.manager.current = 'cript' 
+            on_release: root.apaga_text()
+        
+        Button: 
+            text: 'Volte ao Menu'
+            on_press: root.manager.current = 'menu' 
+            on_release: root.apaga_text()
+            
+        
+
+               
+                
 """)
 
-# Declare both screens
+# Declare screens
 
 class Senha(Screen):
     pass
@@ -152,15 +205,33 @@ class Paginasenha(Screen):
 
 class PaginaEncriptSenha(Screen):
     def save(self):
-
+        global my_pwd1
         my_pwd = self.ids.senha_1.text
         my_pwd1 = encript_senha(my_pwd, "ccLmrWCJu7vpwaroDuSEjv6amtpLyiY9MI-PS-oWy_4=")
-        return my_pwd1
-    #def imprime(self):
-        #return PaginaEncriptSenha.save.
 
+    def mostra_senha(self):
+        self.ids.senha_1.text = my_pwd1
+        self.ids.titulo_encript.text = 'Senha Encriptada'
+    def apaga_text(self):
+        self.ids.senha_1.text = ''
+        self.ids.titulo_encript.text = 'Digite a Senha a ser Encriptada:'
 
+class PaginaDecriptSenha(Screen):
+    def save(self):
+        global my_pwd2
+        my_pwd = self.ids.senha_2.text
+        my_pwd2 = decript_senha(my_pwd, "ccLmrWCJu7vpwaroDuSEjv6amtpLyiY9MI-PS-oWy_4=")
 
+    def mostra_senha(self):
+        self.ids.senha_2.text = my_pwd2
+        self.ids.titulo_decript.text = 'Senha Decriptada'
+
+    def apaga_text(self):
+        self.ids.senha_2.text = ''
+        self.ids.titulo_decript.text = 'Digite a Senha a ser Decriptada:'
+
+    def clippaste(self):
+        self.ids.senha_2.text = pyperclip.paste()
 
 # Create the screen manager
 sm = ScreenManager()
@@ -172,17 +243,17 @@ sm.add_widget((Criptarq(name='criptarq')))
 sm.add_widget((Repositorio(name='repsenha')))
 sm.add_widget((Paginasenha(name='pagsenha')))
 sm.add_widget((PaginaEncriptSenha(name='pgencriptsenha')))
+sm.add_widget(PaginaDecriptSenha(name='pgdecriptsenha'))
 
 class TestApp(App):
 
     def build(self):
         return sm
 
-    def get_text_inputs(self):
-        my_list = [self.root.ids.senha_1.text]
-        print(my_list)
-    def mostra_senha(self, text):
-        self.root.ids.senha_1.text += text
+    def clipcopy(self, data):
+        pyperclip.copy(str(data))
+    def clippaste(self):
+        pyperclip.paste()
 
 
 if __name__ == '__main__':
