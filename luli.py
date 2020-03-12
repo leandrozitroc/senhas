@@ -17,11 +17,11 @@ def cript_arquivo(filename, key):
             file_data = file.read()
             data_encripitada = f.encrypt(file_data)
     except:
-            print('\33[1;31m Arquivo Inexistente!\33[m')
+            return 'Arquivo Inexistente!'
     else:
         with open(filename, 'wb') as file:
             file.write(data_encripitada)
-            print('\33[1;32m Arquivo encriptado com sucesso!\33[m')
+            return 'Arquivo Criptografado'
 
 def decript_arquivo(filename , key):
     f = Fernet(key)
@@ -30,12 +30,12 @@ def decript_arquivo(filename , key):
             file_data = file.read()
             data_decripitada = f.decrypt(file_data)
     except:
-        print('\33[1;31m Arquivo Inexistente!\33[m')
+        return 'Arquvivo inexistente ou não criptografado'
 
     else:
         with open(filename, 'wb') as file:
             file.write(data_decripitada)
-            print('\33[1;32m Arquivo decriptado com sucesso!\33[m')
+            return 'Arquivo descriptografado'
 
 def gerarsenha():
     pwo= PasswordGenerator()
